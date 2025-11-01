@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Plumbing 101 - Hands-On Training for Homeowners</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a4d5e 0%, #2d7a91 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #c8553d;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(200, 85, 61, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 85, 61, 0.4);
+        }
+
+        .section {
+            padding: 60px 20px;
+        }
+
+        .section-alt {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #1a4d5e;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text .subtle-note {
+            font-size: 0.95rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #2d7a91;
+            transition: transform 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .skill-card h3 {
+            color: #1a4d5e;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .info-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .info-item .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .info-item h3 {
+            color: #1a4d5e;
+            margin-bottom: 10px;
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .benefit-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            color: #1a4d5e;
+            margin-bottom: 10px;
+        }
+
+        .booking-section {
+            background: linear-gradient(135deg, #1a4d5e 0%, #2d7a91 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .booking-section h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .contact-info h3 {
+            color: #1a4d5e;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            margin: 15px 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: #2d7a91;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            color: #c8553d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 800px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal h2 {
+            color: #1a4d5e;
+            margin-bottom: 20px;
+        }
+
+        .modal h3 {
+            color: #2d7a91;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        .modal p, .modal ul {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .modal ul {
+            padding-left: 25px;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px 20px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #2d7a91;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #c8553d;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.7rem;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="container">
+            <h1>🔧 DIY Plumbing 101</h1>
+            <p>Learn essential plumbing skills in a hands-on workshop designed for homeowners. Save money and handle minor repairs with confidence!</p>
+            <a href="#book" class="cta-button">Book Your Course</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>About the Course</h2>
+            <div class="about-text">
+                <p>This comprehensive hands-on training course is designed specifically for homeowners who want to learn basic plumbing skills. Taught by a licensed journeyman plumber with professional experience, you'll gain practical knowledge to handle common household plumbing issues on your own property.</p>
+                
+                <p style="margin-top: 20px;">Training takes place in a customized garage workshop, professionally designed for learning with real plumbing fixtures and materials. You'll get actual hands-on experience with the tools and techniques you'll use at home.</p>
+
+                <p class="subtle-note">This course is designed for homeowner education and personal residence use only. It does not provide professional licensing or certification.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section benefits-section">
+        <div class="container">
+            <h2>Why Take This Course?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="emoji">💰</div>
+                    <h3>Save Money</h3>
+                    <p>Handle minor repairs yourself and avoid costly service calls for simple fixes</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">⚡</div>
+                    <h3>Quick Fixes</h3>
+                    <p>Address small issues immediately before they become major problems</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">🎓</div>
+                    <h3>Expert Training</h3>
+                    <p>Learn from a licensed professional in a safe, controlled environment</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="emoji">🛠️</div>
+                    <h3>Hands-On Practice</h3>
+                    <p>Real fixtures, real tools, real experience—not just theory</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-alt">
+        <div class="container">
+            <h2>What You'll Learn</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🚰 Faucet Replacement</h3>
+                    <p>Replace bathroom and kitchen faucets and supply lines</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🚽 Toilet Maintenance</h3>
+                    <p>Replace toilet tank components and pull & reset a standard 2-piece toilet</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔧 Sink Pop-Up Assembly</h3>
+                    <p>Replace and adjust sink pop-up assemblies</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔄 Under-Sink Work</h3>
+                    <p>Change out under-sink tubular connections</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🚨 Emergency Shutoffs</h3>
+                    <p>Identify and use emergency shut-off valves</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🚿 Shower Head Replacement</h3>
+                    <p>Remove and install shower heads</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🧹 Toilet Clogs</h3>
+                    <p>First steps on how to handle a toilet clog safely</p>
+                </div>
+                <div class="skill-card">
+                    <h3>💨 Aerator Maintenance</h3>
+                    <p>Clean out and replace faucet aerators</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: #666; font-size: 0.95rem;">
+                <em>Course covers minor repairs suitable for homeowners. For major issues, we recommend consulting a licensed professional.</em>
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Course Details</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icon">📍</div>
+                    <h3>Location</h3>
+                    <p>Lancaster, PA<br>Customized garage workshop</p>
+                </div>
+                <div class="info-item">
+                    <div class="icon">👨‍🏫</div>
+                    <h3>Instructor</h3>
+                    <p>Licensed journeyman plumber with professional experience</p>
+                </div>
+                <div class="info-item">
+                    <div class="icon">🛠️</div>
+                    <h3>Format</h3>
+                    <p>Hands-on training with real fixtures and tools</p>
+                </div>
+                <div class="info-item">
+                    <div class="icon">💳</div>
+                    <h3>Payment</h3>
+                    <p>Cash, Venmo, CashApp, Debit/Credit accepted</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="booking-section" id="book">
+        <div class="container">
+            <h2>Ready to Learn?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">Book your course date today and start saving money on plumbing repairs!</p>
+            
+            <div class="contact-info">
+                <h3>Contact Us to Book</h3>
+                <div class="contact-item">
+                    📧 Email: <a href="mailto:717plumbing@gmail.com">717plumbing@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    📱 Phone: <a href="tel:###-###-####">(###) ###-####</a>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.95rem; color: #666;">Text, call, or email to inquire about available course dates and pricing.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" onclick="openModal(); return false;">Terms & Conditions</a>
+                <a href="#" onclick="openModal(); return false;">Course Disclaimer</a>
+            </div>
+            <p>&copy; 2025 DIY Plumbing 101 | Lancaster, PA</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Established 2025 | Professional homeowner education</p>
+        </div>
+    </footer>
+
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Course Terms & Disclaimer</h2>
+            
+            <h3>Course Purpose</h3>
+            <p>This course is intended solely to provide homeowners with basic knowledge for performing minor plumbing repairs on their own property. It is not a substitute for professional plumbing training and does not qualify you as a licensed plumber.</p>
+            
+            <h3>Scope of Use</h3>
+            <p>The skills taught are for use on your personal residence only and are not intended for application on other homes or commercial properties.</p>
+            
+            <h3>When to Call a Professional</h3>
+            <p>If you encounter issues beyond the scope of this course—such as persistent leaks, significant water damage, or problems that could result in property damage—you should stop immediately and contact a licensed plumbing professional.</p>
+            
+            <h3>Limitation of Liability</h3>
+            <p>The instructor and this course are not liable for any damages, injuries, or costs that may arise from attempting repairs. By enrolling in this course, you acknowledge that:</p>
+            <ul>
+                <li>You are undertaking repairs at your own risk</li>
+                <li>You will exercise appropriate caution and safety measures</li>
+                <li>You understand the limitations of the training provided</li>
+                <li>You will seek professional help when repairs exceed your skill level</li>
+            </ul>
+            
+            <h3>Safety First</h3>
+            <p>Always prioritize safety when working on plumbing systems. Know when to stop and call a professional. The goal of this course is to empower homeowners with basic skills while emphasizing the importance of recognizing when professional expertise is required.</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('disclaimerModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('disclaimerModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('disclaimerModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
